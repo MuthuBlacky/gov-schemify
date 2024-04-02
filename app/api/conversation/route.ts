@@ -1,4 +1,4 @@
-"use server"
+
 import { ChatCompletionRequestMessage, Configuration, OpenAIApi } from 'openai';
 import { NextResponse } from 'next/server';
 import { currentUser } from '@/lib/auth';
@@ -14,13 +14,12 @@ export async function POST(req: Request) {
   try {
     console.log("hi");
     const user = await currentUser();
-    const userId = user?.id
+    // const userId = user?.id
     const body = await req.json();
     const { messages } = body;
-    console.log(messages)
-    if(!userId) {
-      return new NextResponse("Unauthorized", { status: 401 });
-    }
+    // if(!userId) {
+    //   return new NextResponse("Unauthorized", { status: 401 });
+    // }
 
     if(!configuration.apiKey) {
       return new NextResponse("OpenAI API Key not configured", { status: 500 });
@@ -29,7 +28,7 @@ export async function POST(req: Request) {
     if (!messages) {
       return new NextResponse("Missing messages", { status: 400 });
     }
-    const fetchres = fetch("givtschem")
+    // const fetchres = fetch("givtschem")
     // You are a government schemes query resolver. You must answer only for government schemes.
     const instructionMessage: ChatCompletionRequestMessage = {
       role: "system",

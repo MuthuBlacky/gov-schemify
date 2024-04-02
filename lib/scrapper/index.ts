@@ -1,8 +1,15 @@
-"use server"
-import { serverClient } from "@/app/_trpc/serverClient";
+"use server";
+
 import axios from "axios";
 import * as cheerio from 'cheerio';
-import { ChatCompletionRequestMessage } from "openai"
+import { ChatCompletionRequestMessage } from "openai";
+
+
+
+import { serverClient } from "@/app/_trpc/serverClient";
+
+
+
 export default async function scrapeSchemes(url : string){
   if(!url){
     return
@@ -32,18 +39,19 @@ export default async function scrapeSchemes(url : string){
     role: "system",
     content: title,
   }
-  console.log(title)
   const newMessages = [userMessage]
-  console.log(newMessages)
-
-  const meaningfullSchemes = await axios.post("http//localhost:3000/api/conversation", {
+  
+  const meaningfullSchemes = await axios.post("http://localhost:3000/api/conversation", {
     messages: newMessages,
   })
-  console.log(meaningfullSchemes.data)
-  if(meaningfullSchemes.status == 200){
-    const createdId = serverClient.scheme.createSchemes({schemeDescription : meaningfullSchemes.data});
+
+
+  if(meaningfullSchemes.status == 200)
+  {
+    const createdId = await serverClient.scheme.createSchemes({schemeDescription : meaningfullSchemes.data.content});
     console.log(createdId)
-    }
+  }
+  
   }
   catch (error: any) {
     console.log(error);
