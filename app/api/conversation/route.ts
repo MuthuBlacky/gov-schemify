@@ -17,7 +17,7 @@ export async function POST(req: Request) {
     // const userId = user?.id
     const body = await req.json();
     const { messages } = body;
-    console.log(messages)
+    console.log(messages[0])
     // if(!userId) {
     //   return new NextResponse("Unauthorized", { status: 401 });
     // }
@@ -33,7 +33,7 @@ export async function POST(req: Request) {
     // You are a government schemes query resolver. You must answer only for government schemes.
     const instructionMessage: ChatCompletionRequestMessage = {
       role: "system",
-      content: "I provide you a long paragraph and all you need to do is separate this paragraph by Details,Benefits,Eligibility,Exclusions,Application Process,Documents Required, you need to convert this to json type object this details is always there for you with this same oreder in the paragraph",
+      content: messages[0].role == "user" ? "You are a government schemes query resolver. You must answer only for government schemes."  : "I provide you a long paragraph and all you need to do is separate this paragraph by Details,Benefits,Eligibility,Exclusions,Application Process,Documents Required, you need to convert this to json type object this details is always there for you with this same oreder in the paragraph",
     };
 
     const response = await openai.createChatCompletion({
