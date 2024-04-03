@@ -14,10 +14,9 @@ const MainLayout = ({ children }: { children: React.ReactNode }) => {
   }
   return (
     <>
-      <div className="flex h-full">
+      <div className="h-full flex">
         <Navigation />
-
-        <main className="flex relative z-[999999] mt-auto mb-7 justify-center w-full">
+        <main className="flex relative z-[999999] h-full mt-auto mb-7 justify-center w-full">
           {children}
         </main>
       </div>
