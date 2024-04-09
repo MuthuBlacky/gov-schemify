@@ -12,6 +12,7 @@ const  ScrapeAndStoreSchemes = async (productUrl : string) => {
      return scrappedSchemes;
   }
   catch(error : any){
+    console.log(error)
     throw Error(`Failed to scrape data message : ${error.message}`)
   }
 }
