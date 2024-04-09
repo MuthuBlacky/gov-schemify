@@ -5,8 +5,6 @@ import TRPCProvider from "./_trpc/Provider"
 import "./globals.css"
 import { auth } from "@/auth"
 import { SessionProvider } from "next-auth/react"
-
-import Header from "@/components/Header"
 import { ToastProvider } from "@/components/provider/toaster-provider"
 
 const inter = Inter({ subsets: ["latin"] })

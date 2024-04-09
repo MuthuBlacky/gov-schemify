@@ -57,7 +57,7 @@ export default async function scrapeSchemes(url : string){
     console.log(createdId)
   }
   
-  }
+  }}
   catch (error: any) {
     console.log(error);
   }

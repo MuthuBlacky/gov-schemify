@@ -67,10 +67,10 @@ const ConversationPage = () => {
   }
   console.log(messages)
   return (
-    <div>
+    <div className="mt-10">
       <Heading
         title="Conversation"
-        description="Chat with the smartest AI on the planet"
+        description="Chat with Government Schemes Query Resolver"
         Icon={MessageSquareIcon}
         iconColor="text-violet-500"
         bgColor="bg-violet-500/10"
@@ -89,7 +89,7 @@ const ConversationPage = () => {
                     <FormControl className="m-0 p-0">
                       <Input
                         {...field}
-                        placeholder="What are the best stocks to buy?"
+                        placeholder="Explain about Recent agriculture, tourism schemes?"
                         className="border-0 outline-none focus-visible:ring-0 focus-visible:ring-transparent"
                         disabled={isLoading}
                         autoComplete="off"

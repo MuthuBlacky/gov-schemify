@@ -3,11 +3,10 @@ import { publicProcedure,router } from "./trpc";
 import * as z from "zod";
 const schemeRouter = router({
     getSchemes : publicProcedure.query(async ()=>{
-        const schemes  = await db.schemes.findMany({select : {
-            schemeName : true
-        }})
-        const allSchemes = schemes.map(item => item.schemeName)
-        return allSchemes
+        const schemes  = await db.schemes.findMany({
+        take : 7
+    })
+        return schemes    
     }),
     createSchemes : publicProcedure.input(z.object({
         schemeDescription : z.string()

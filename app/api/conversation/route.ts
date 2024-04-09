@@ -2,7 +2,8 @@
 import { ChatCompletionRequestMessage, Configuration, OpenAIApi } from 'openai';
 import { NextResponse } from 'next/server';
 import { currentUser } from '@/lib/auth';
-
+import { serverClient } from '@/app/_trpc/serverClient';
+import type { Schemes } from '@prisma/client';
 
 const configuration = new Configuration({
   apiKey: process.env.OPENAI_API_KEY,
@@ -17,6 +18,7 @@ export async function POST(req: Request) {
     // const userId = user?.id
     const body = await req.json();
     const { messages } = body;
+    console.log(messages[0])
     // if(!userId) {
     //   return new NextResponse("Unauthorized", { status: 401 });
     // }
@@ -34,9 +36,16 @@ export async function POST(req: Request) {
     }
     // const fetchres = fetch("givtschem")
     // You are a government schemes query resolver. You must answer only for government schemes.
-    const instructionMessage: ChatCompletionRequestMessage = {
+    var schemes:string[] = [];
+    if(messages[0].role == "user"){
+      const topSevenSchemes :Schemes[] = await serverClient.scheme.getSchemes();
+      schemes = topSevenSchemes.map(item => item.schemeName)
+    }
+    console.log(schemes)
+      const instructionMessage: ChatCompletionRequestMessage = {
       role: "system",
-      content: "I provide you a long paragraph and all you need to do is separate this paragraph by Details,Benefits,Eligibility,Exclusions,Application Process,Documents Required, you need to convert this to json type object this details is always there for you with this same oreder in the paragraph",
+      content: messages[0].role == "user" ? `You are a government schemes query resolver. You must answer only for government schemes related to agriculture and tourism. If they ask about recent government schemes, you should provide details only about the schemes I've provided to you. If they have any doubts about the provided scheme, you should resolve their query. If they ask you to list some schemes, you should list the top 5 schemes in the order I provided to you. These are the top 7 schemes I provide to you ${schemes}`
+        : "I provide you a long paragraph and all you need to do is separate this paragraph by Details,Benefits,Eligibility,Exclusions,Application Process,Documents Required, you need to convert this to json type object this details is always there for you with this same oreder in the paragraph",
     };
 
     const response = await openai.createChatCompletion({

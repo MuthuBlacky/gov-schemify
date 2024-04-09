@@ -63,7 +63,7 @@ model Conversation {
   users   User[]   @relation(fields: [userIds], references: [id])
 }
 
-model Schemes {
+ model Schemes {
   id         String @id @default(auto()) @map("_id") @db.ObjectId
   schemeName String
 }
