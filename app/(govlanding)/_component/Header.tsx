@@ -23,13 +23,28 @@ const Header = async () => {
           </Button>
         </Link>
       )}
-      {user && (
-        <Link href={"/chatbot"}>
-          <Button className={`bg-[#008606] hover:bg-emerald-600 text-sm`}>
-            Get Into GovSchemify
-          </Button>
-        </Link>
-      )}
+      <div className="flex justify-between items-center w-[25%]">
+        {user && (
+          <Link href={"/recentschemes"}>
+            <Button
+              className={`text-sm hover:bg-[#008606] hover:text-white`}
+              variant={"outline"}
+            >
+              Recent schemes
+            </Button>
+          </Link>
+        )}
+        {user && (
+          <Link href={"/chatbot"}>
+            <Button
+              className={`bg-[#008606] hover:bg-none text-white hover:text-black text-sm`}
+              variant={"outline"}
+            >
+              Get Into GovSchemify
+            </Button>
+          </Link>
+        )}
+      </div>
     </div>
   )
 }

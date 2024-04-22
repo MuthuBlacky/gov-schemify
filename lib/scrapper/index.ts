@@ -50,14 +50,15 @@ export default async function scrapeSchemes(url : string){
   {
     const createdId = await serverClient.scheme.createSchemes({schemeDescription : meaningfullSchemes.data.content});
 
-  console.log(meaningfullSchemes.data);
+    console.log(meaningfullSchemes.data);
 
-  if(meaningfullSchemes.status == 200){
-    const createdId = serverClient.scheme.createSchemes({schemeDescription : meaningfullSchemes.data});
-    console.log(createdId)
+  // if(meaningfullSchemes.status == 200){
+  //   const createdId = serverClient.scheme.createSchemes({schemeDescription : meaningfullSchemes.data});
+  //   console.log(createdId)
+  // }
+    return createdId
   }
-  
-  }}
+}
   catch (error: any) {
     console.log(error);
   }

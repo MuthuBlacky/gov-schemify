@@ -18,12 +18,12 @@ export async function POST(req: Request) {
     // const userId = user?.id
     const body = await req.json();
     const { messages } = body;
-    console.log(messages[0])
+    // console.log(messages[0])
     // if(!userId) {
     //   return new NextResponse("Unauthorized", { status: 401 });
     // }
 
-    console.log(messages)
+    // console.log(messages)
     // if(!userId) {
     //   return new NextResponse("Unauthorized", { status: 401 });
     // }
@@ -44,7 +44,7 @@ export async function POST(req: Request) {
     console.log(schemes)
       const instructionMessage: ChatCompletionRequestMessage = {
       role: "system",
-      content: messages[0].role == "user" ? `You are a government schemes query resolver. You must answer only for government schemes related to agriculture and tourism. If they ask about recent government schemes, you should provide details only about the schemes I've provided to you. If they have any doubts about the provided scheme, you should resolve their query. If they ask you to list some schemes, you should list the top 5 schemes in the order I provided to you. These are the top 7 schemes I provide to you ${schemes}`
+      content: messages[0].role == "user" ? `You are a government schemes query resolver. You must answer only for government schemes related to agriculture and tourism. If they ask about recent government schemes, you should provide details only about the schemes I've provided to you. If they have any doubts about the provided scheme, you should resolve their query. If they ask you to list some schemes, you should list the top 5 schemes in the order I provided to you. These are the schemes I provide to you ${schemes}`
         : "I provide you a long paragraph and all you need to do is separate this paragraph by Details,Benefits,Eligibility,Exclusions,Application Process,Documents Required, you need to convert this to json type object this details is always there for you with this same oreder in the paragraph",
     };
 

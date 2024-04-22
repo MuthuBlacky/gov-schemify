@@ -1,7 +1,7 @@
 "use client"
 
 import { useEffect, useState } from "react"
-import { useRouter } from "next/navigation"
+import { useRouter, useSearchParams } from "next/navigation"
 import { zodResolver } from "@hookform/resolvers/zod"
 import axios from "axios"
 import { MessageSquareIcon } from "lucide-react"
@@ -22,6 +22,7 @@ import { Loader } from "@/components/Loader"
 import { UserAvatar } from "@/components/UserAvatar"
 
 const ConversationPage = () => {
+  const searchParams = useSearchParams()
   const proModal = useProModal()
   const router = useRouter()
   const [messages, setMessages] = useState<ChatCompletionRequestMessage[]>([])
@@ -30,13 +31,15 @@ const ConversationPage = () => {
       message: "Prompt is required",
     }),
   })
-
+  let promptMessage = searchParams.get("schemedetail")
+  promptMessage = !promptMessage ? "" : promptMessage
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
       prompt: "",
     },
   })
+  // form.setValue("prompt", promptMessage.get("search")!)
   const isLoading = form.formState.isSubmitting
 
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
@@ -65,6 +68,12 @@ const ConversationPage = () => {
       router.refresh()
     }
   }
+  useEffect(() => {
+    function setPromptMessage() {
+      form.setValue("prompt", promptMessage!)
+    }
+    setPromptMessage()
+  }, [])
   console.log(messages)
   return (
     <div className="mt-10">

@@ -4,9 +4,9 @@ import * as z from "zod";
 const schemeRouter = router({
     getSchemes : publicProcedure.query(async ()=>{
         const schemes  = await db.schemes.findMany({
-        take : 7
-    })
-        return schemes    
+            take : 7
+        })
+        return schemes
     }),
     createSchemes : publicProcedure.input(z.object({
         schemeDescription : z.string()
@@ -17,6 +17,15 @@ const schemeRouter = router({
             },
         })
         return (await createdId).id
+    }),
+    getNewSchemes : publicProcedure.query(async ()=> {
+        const schemes = await db.schemes.findMany({
+            take : 10,
+            orderBy : {
+                id : "desc"
+            }
+        })
+        return schemes;
     })
 })
 export default schemeRouter

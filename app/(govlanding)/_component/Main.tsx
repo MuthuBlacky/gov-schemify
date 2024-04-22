@@ -11,8 +11,8 @@ import styles from "./StyleSheet.module.css"
 const Main = async () => {
   const user = await currentUser()
   return (
-    <div>
-      <div className="flex justify-between w-[37%]">
+    <div className="grid grid-cols-1">
+      <div className="grid grid-cols-2 gap-5 md:grid-cols-2 sm:grid-cols-1 justify-between w-[40%]">
         <Image
           src={"/images/womens.jpg"}
           width={200}

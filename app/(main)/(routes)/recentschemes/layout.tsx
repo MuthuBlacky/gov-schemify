@@ -5,9 +5,9 @@ import { redirect } from "next/navigation"
 
 import { useCurrentUser } from "@/hooks/use-current-user"
 
-import Navigation from "./_components/navigation"
+import DialogRecentScheme from "../../_components/dialog-recent-scheme"
 
-const MainLayout = ({ children }: { children: React.ReactNode }) => {
+const SchemeLayout = ({ children }: { children: React.ReactNode }) => {
   const user = useCurrentUser()
   if (!user) {
     redirect("/")
@@ -15,11 +15,12 @@ const MainLayout = ({ children }: { children: React.ReactNode }) => {
   return (
     <>
       <div className="h-full flex">
-        <main className="flex relative  h-full mt-auto mb-7 justify-center w-full">
+        <main className="flex relative h-full mt-auto mb-7 justify-center w-full">
+        <DialogRecentScheme/>
           {children}
         </main>
       </div>
     </>
   )
 }
-export default MainLayout
+export default SchemeLayout
