@@ -73,7 +73,7 @@ export const ProModal = () => {
           <DialogTitle className='flex justify-center items-center flex-col gap-y-4 pb-2'>
             <div className='flex items-center gap-x-2 font-bold py-1'>
               Upgrade to Genius
-              <Badge variant="premium" className='uppercase text-sm py-1'>
+              <Badge variant="default" className='uppercase text-sm py-1'>
                 Pro
               </Badge>
             </div>
@@ -103,7 +103,7 @@ export const ProModal = () => {
         <DialogFooter>
           <Button
             size="lg"
-            variant="premium"
+            variant="default"
             className="w-full"
             onClick={onSubscribe}
             disabled={loading}

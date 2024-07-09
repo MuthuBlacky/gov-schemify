@@ -26,15 +26,13 @@ const Main = async () => {
         <p
           className={`${styles.scheme_desc} text-[#474747] text-3xl font-semibold`}
         >
-          Dui elit nascetur enim feugiat in nibh at amet.
+          Government of Tamil Nadu
         </p>
         <br />
         <p className={`${styles.ele} text-[#888888] text-sm`}>
-          Imperdiet ultrices vitae aliquet vitae tortor viverra. Et tellus cras
-          amet quis lacus ullamcorper elit mi sit. Non sed urna diam tempor et
-          diam. Imperdiet ultrices vitae aliquet vitae tortor viverra. Et tellus
-          cras amet quis lacus ullamcorper elit mi sit. Non sed urna diam tempor
-          et diam.
+          The government is not your salvation. The government is not your road
+          to prosperity. Hard work, education will take you far beyond what any
+          government program can ever promise
         </p>
       </div>
       <div

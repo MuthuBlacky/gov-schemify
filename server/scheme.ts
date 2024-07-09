@@ -4,7 +4,10 @@ import * as z from "zod";
 const schemeRouter = router({
     getSchemes : publicProcedure.query(async ()=>{
         const schemes  = await db.schemes.findMany({
-            take : 7
+            take : 10,
+            orderBy : {
+                id : "desc"
+            }
         })
         return schemes
     }),
@@ -20,12 +23,20 @@ const schemeRouter = router({
     }),
     getNewSchemes : publicProcedure.query(async ()=> {
         const schemes = await db.schemes.findMany({
-            take : 10,
+            take : 15,
             orderBy : {
                 id : "desc"
             }
         })
         return schemes;
+    }),
+    getSchemeById : publicProcedure.input(z.string()).query(async ({input})=>{
+        const scheme = await db.schemes.findFirst({
+            where : {
+                id : input
+            }
+        })
+        return scheme
     })
 })
 export default schemeRouter

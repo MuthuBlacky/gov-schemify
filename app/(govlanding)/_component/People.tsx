@@ -32,7 +32,7 @@ const People = () => {
         </div>
       </div>
       <p
-        className={`${styles.benefits} ml-3 text-sm text-[#666666] text-muted-foreground`}
+        className={`${styles.benefits} ml-3 text-sm text-[#666666]`}
       >
         <span className="text-[#7C7C7C] text-2xl font-bold">17.1 M</span>
         <br />

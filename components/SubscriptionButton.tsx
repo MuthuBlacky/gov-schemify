@@ -30,7 +30,7 @@ export const SubscriptionButton = ({ isPro = false}: SubscriptionButtonProps) =>
   }
 
   return (
-    <Button variant={isPro? "default": "premium"} onClick={onClick} disabled={loading} >
+    <Button variant={isPro? "default": "outline"} onClick={onClick} disabled={loading} >
       {isPro ? 'Manage Subscription' : 'Upgrade'}
       {!isPro && <ZapIcon className='w-4 h-4 ml-2 fill-white' />}
     </Button>

@@ -26,7 +26,7 @@ export const ClaimPoint = ( {isDailyRewardAvailable} : ClaimPointProps ) => {
 
   return ( isClaimed ? <></> :
     <Button
-      variant={'premium'}
+      variant={'default'}
       className='ml-2'
       size={'sm'}
       onClick={onClaimDailyReward}
